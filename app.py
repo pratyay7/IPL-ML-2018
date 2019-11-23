@@ -1,5 +1,5 @@
 from prediction import predict
-from flask import Flask, render_template, request, flash
+from flask import Flask, render_template, request, flash,jsonify
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'defaultkey'
@@ -24,7 +24,7 @@ def post():
         home_team_name = convert_back_to_team_names(home_team).__str__()
         away_team_name = convert_back_to_team_names(away_team).__str__()
         flash("Match Prediction between " + home_team_name + " and " + away_team_name + " is higher for: " + winner_team)
-    return render_template('index.html')
+    return jsonify({"data":winner_team})
     # return render_template('results.html')
 
 
